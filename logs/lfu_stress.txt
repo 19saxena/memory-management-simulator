@@ -1,0 +1,22 @@
+Memory Management Simulator Ready. Type 'help' for commands.
+> Initialized physical memory with 256 bytes
+> > > > > > >
+=== MULTILEVEL CACHE DUMP ===
+
+=== CACHE DUMP (LFU victim selection active) ===
+Set 0: V(tag=0, f=6)
+Set 1: I
+Set 2: I
+Set 3: I
+
+=== CACHE DUMP (LFU victim selection active) ===
+Set 0: I I I V(tag=0, f=1)
+Set 1: I I I I
+Set 2: I I I I
+Set 3: I I I I
+>
+=== MULTILEVEL CACHE STATS ===
+L1 hits: 5  L1 misses: 1
+L2 hits: 0  L2 misses: 1
+L1 hit ratio: 83.3333%
+L2 hit ratio: 0%

@@ -1,0 +1,21 @@
+Memory Management Simulator Ready. Type 'help' for commands.
+> Initialized physical memory with 256 bytes
+> > Buddy allocator initialized with 256 bytes
+Buddy allocator initialized with 256 bytes
+> Allocated buddy block id=1 at address 0x0
+> Allocated buddy block id=2 at address 0x20
+> Allocated buddy block id=3 at address 0x10
+> Buddy block 2 freed and merged if possible
+>
+=== BUDDY MEMORY DUMP ===
+[0x18 - 0x1f] FREE
+[0x20 - 0x3f] FREE
+[0x40 - 0x7f] FREE
+[0x80 - 0xff] FREE
+>
+=== BUDDY ALLOCATOR STATS ===
+Total memory: 256 bytes
+Used memory: 24 bytes
+Free memory: 232 bytes
+Memory utilization: 9.375%
+Total allocation requests: 3

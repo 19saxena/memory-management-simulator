@@ -1,9 +1,0 @@
-init memory 1024
-access 0
-access 64
-access 128
-access 0
-access 64
-access 0
-cache stats
-exit

@@ -1,0 +1,24 @@
+Memory Management Simulator Ready. Type 'help' for commands.
+> Initialized physical memory with 256 bytes
+> > Allocated block id=1 at address assigned internally
+> Allocated block id=2 at address assigned internally
+> Block 1 freed and coalesced if possible
+> > Allocated block id=3 at address assigned internally
+> Block 2 freed and coalesced if possible
+> > Allocated block id=4 at address assigned internally
+>
+=== MEMORY DUMP ===
+[0x0000 - 0x000f] USED (id=3)
+[0x0010 - 0x001f] USED (id=4)
+[0x0020 - 0x00ff] FREE
+>
+=== MEMORY STATS ===
+Total memory: 256 bytes
+Used memory: 32 bytes
+Free memory: 224 bytes
+Memory utilization: 12.50%
+Internal fragmentation: 14 bytes
+External fragmentation: 0.00%
+Allocation success rate: 100.00%
+Allocation failure rate: 0.00%
+Total allocation requests: 4

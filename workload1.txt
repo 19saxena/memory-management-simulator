@@ -1,3 +1,0 @@
-memsim.exe
-Memory Management Simulator Ready. Type 'help' for commands.
-> 
