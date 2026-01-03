@@ -1,12 +1,14 @@
-CXX=g++
-CXXFLAGS=-std=c++17 -Wall
-
-SRC=src/main.cpp src/allocator/memory_manager.cpp
-OUT=memsim
-
 all:
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(OUT)
+	g++ -std=c++17 -Wall \
+src/main.cpp \
+src/allocator/memory_manager.cpp \
+src/cache/cache.cpp \
+src/cache/multilevel_cache.cpp \
+src/buddy/buddy_allocator.cpp \
+-o memsim.exe
+
+run:
+	memsim.exe
 
 clean:
-	del /Q memsim.exe || echo nothing to clean
-
+	rm -f memsim memsim.exe

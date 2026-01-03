@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include<algorithm>
+#include<iomanip>
 
 MemoryManagerSimulator::MemoryManagerSimulator()
    : allocator(AllocatorType::FIRST_FIT), memory_size(0), alloc_success(0), alloc_fail(0), internal_frag(0), time(0), next_id(1) {}
@@ -131,9 +132,9 @@ bool MemoryManagerSimulator::free_block(int block_id) {
 void MemoryManagerSimulator::dump() const {
     std::cout << "\n=== MEMORY DUMP ===\n";
     for (const auto &b : blocks) {
-        std::cout << "[0x" << std::hex << b.start << " - 0x"
-                  << (b.start + b.size - 1) << "] "
-                  << (b.free ? "FREE" : "USED");
+        std::cout << "[0x" << std::hex << std::setw(4) << std::setfill('0') << b.start
+                  << " - 0x" << std::hex << std::setw(4) << std::setfill('0') << (b.start + b.size - 1)
+                  << "] " << (b.free ? "FREE" : "USED");
         if (!b.free) std::cout << " (id=" << b.id << ")";
         std::cout << "\n";
     }
@@ -163,33 +164,32 @@ void MemoryManagerSimulator::stats() const {
     std::cout << "Total memory: " << memory_size << " bytes\n";
     std::cout << "Used memory: " << used << " bytes\n";
     std::cout << "Free memory: " << (memory_size - used) << " bytes\n";
-    std::cout << "Memory utilization: " << utilization << "%\n";
+    std::cout << "Memory utilization: " << std::fixed << std::setprecision(2) << utilization << "%\n";
     std::cout << "Internal fragmentation: " << internal_frag << " bytes\n";
-    std::cout << "External fragmentation: " << ext_frag << "%\n";
-    std::cout << "Allocation success rate: " << success_rate << "%\n";
-    std::cout << "Allocation failure rate: " << failure_rate << "%\n";
+    std::cout << "External fragmentation: " << std::fixed << std::setprecision(2) << ext_frag << "%\n";
+    std::cout << "Allocation success rate: " << std::fixed << std::setprecision(2) << success_rate << "%\n";
+    std::cout << "Allocation failure rate: " << std::fixed << std::setprecision(2) << failure_rate << "%\n";
     std::cout << "Total allocation requests: " << total_requests << "\n";
 }
 
-
 void MemoryManagerSimulator::visualize() const {
-    size_t used_mem = 0;
-    for (const auto &b : blocks)
-        if (!b.free) used_mem += b.size;
+    size_t scale = std::clamp(memory_size / 32, (size_t)32, (size_t)80);
 
-    int scale = 50;
-    size_t total_units = memory_size;
+    std::string bar(scale, '_');
 
-    std::string bar;
-    for (int i = 0; i < scale; i++) {
-        size_t addr = (size_t)((double)i / scale * total_units);
-        auto it = std::find_if(blocks.begin(), blocks.end(), [&](const Block &b) {
-            return !b.free && addr >= b.start && addr < b.start + b.size;
-        });
-        bar += (it != blocks.end()) ? "#" : "_";
+    for (const auto &b : blocks) {
+        if (!b.free) {
+            size_t s = (b.start * scale) / memory_size;
+            size_t e = ((b.start + b.size) * scale) / memory_size;
+            if (e > scale) e = scale;
+            for (size_t i = s; i < e; i++) {
+                bar[i] = '#';
+            }
+        }
     }
 
     std::cout << "\n=== MEMORY VISUALIZATION ===\n";
     std::cout << "[" << bar << "]\n";
     std::cout << "_ = FREE, # = USED\n";
 }
+
