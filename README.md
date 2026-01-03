@@ -1,3 +1,28 @@
-# memory-management-simulator
-A C++ simulator implementing First/Best/Worst-Fit memory allocation, Buddy system with XOR coalescing, multilevel (L1 FIFO + L2 LRU) cache, and fragmentation/utilization metrics via CLI.
+# Memory Management Simulator 
+
+A C++ CLI simulator implementing:
+- **Memory Allocation:** First Fit, Best Fit, Worst Fit (16-byte alignment, block splitting, and free-block coalescing)
+- **Buddy Allocator (Optional):** Power-of-2 rounding, recursive splitting, and XOR-based buddy coalescing
+- **Multilevel CPU Cache:** L1 (**FIFO**), L2 (**LRU**) with hit/miss counters and miss propagation
+
+---
+
+## Project Structure
+
+src/allocator/ → Allocation algorithms + memory stats
+src/buddy/ → Buddy allocator 
+src/cache/ → Multilevel cache simulation
+tests/ → Workload command scripts (.txt)
+logs/ → Pre-generated execution logs
+Makefile → build & run automation
+
+---
+
+## Build
+mingw32-make
+## Run CLI
+mingw32-make run
+## Run workload tests
+memsim.exe < tests/workload_seq.txt
+
 For detailed documentation, please go to docs/design.md
