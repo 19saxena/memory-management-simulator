@@ -1,0 +1,12 @@
+init memory 1024
+access 0
+access 64
+access 128
+access 192
+access 256
+access 0
+access 128
+access 256
+cache dump
+cache stats
+exit

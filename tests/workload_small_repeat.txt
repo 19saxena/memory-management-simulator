@@ -1,0 +1,11 @@
+init memory 1024
+set allocator best_fit
+malloc 7
+malloc 15
+malloc 23
+malloc 7
+malloc 15
+malloc 7
+stats
+visualize
+exit

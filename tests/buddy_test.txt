@@ -1,0 +1,10 @@
+init memory 256
+set allocator first_fit
+buddy_init 256
+buddy_malloc 13
+buddy_malloc 20
+buddy_malloc 7
+buddy_free 2
+buddy_dump
+stats
+exit

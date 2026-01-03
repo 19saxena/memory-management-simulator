@@ -1,0 +1,10 @@
+init memory 4096
+set allocator worst_fit
+malloc 500
+malloc 200
+malloc 1000
+malloc 16
+dump memory
+visualize
+stats
+exit

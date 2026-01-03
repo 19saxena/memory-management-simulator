@@ -1,0 +1,13 @@
+init memory 256
+set allocator first_fit
+malloc 32
+malloc 16
+free 1
+set allocator best_fit
+malloc 10
+free 2
+set allocator worst_fit
+malloc 8
+dump memory
+stats
+exit
