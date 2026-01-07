@@ -82,7 +82,7 @@ int MemoryManagerSimulator::malloc_block(size_t size) {
     }
 
     alloc_success++;
-    int id = next_id++;  // ⭐ FIXED
+    int id = next_id++;  
 
     if (it->size > actual) {
         Block rem;

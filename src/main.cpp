@@ -9,11 +9,9 @@ int main() {
     MemoryManagerSimulator mm;
     std::string cmd;
 
-    // ⭐ Create L1 and L2 cache objects
     Cache L1(256, 64, 1, CachePolicy::FIFO);
     Cache L2(1024, 64, 4, CachePolicy::LRU);
-  // 4-way set associative LRU
-    MultiLevelCache cache(L1, L2);                // multilevel wrapper
+    MultiLevelCache cache(L1, L2);              
 
     std::cout << "Memory Management Simulator Ready. Type 'help' for commands.\n";
     BuddyAllocator* ba = nullptr;
@@ -21,7 +19,7 @@ int main() {
         std::cout << "> ";
         std::cin >> cmd;
 
-        if (cmd == "help") {
+       if (cmd == "help") {
             std::cout << "\nCommands:\n";
             std::cout << "  init memory <size>\n";
             std::cout << "  set allocator <first_fit | best_fit | worst_fit>\n";
@@ -33,8 +31,13 @@ int main() {
             std::cout << "  access <address>   (simulate cache access)\n";
             std::cout << "  cache dump\n";
             std::cout << "  cache stats\n";
+            std::cout << "  buddy_init <size>\n";
+            std::cout << "  buddy_malloc <size>\n";
+            std::cout << "  buddy_free <block_id>\n";
+            std::cout << "  buddy_dump\n";
+            std::cout << "  buddy_stats\n";
             std::cout << "  exit\n\n";
-        }
+}
 
         else if (cmd == "init") {
             std::string type;
@@ -97,7 +100,7 @@ int main() {
         else if (cmd == "access") {
             size_t address;
             std::cin >> address;
-            cache.access(address);  // cache simulator call
+            cache.access(address);  
         }
 
         else if (cmd == "cache") {

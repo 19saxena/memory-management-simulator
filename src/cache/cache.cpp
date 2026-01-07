@@ -14,28 +14,26 @@ bool Cache::access(uint64_t address, uint64_t &time) {
     uint64_t tag = address / block;
     uint64_t set = tag % num_sets;
 
-    // Check for HIT
     for (auto &line : sets[set]) {
         if (line.valid && line.tag == tag) {
-            line.freq++;      // ⭐ increase LFU count on hit
+            line.freq++;     
             line.last_used = time;
             return true;
         }
     }
 
-    // MISS → choose victim based on LFU
     auto &lines = sets[set];
     auto victim = std::min_element(lines.begin(), lines.end(),
         [](const CacheLine &a, const CacheLine &b) {
-            if (!a.valid) return true;  // Prefer empty slots
+            if (!a.valid) return true;  
             if (!b.valid) return false;
-            return a.freq < b.freq;    // ⭐ LFU: least freq first
+            return a.freq < b.freq;    
         });
 
     // Replace victim
     victim->valid = true;
     victim->tag = tag;
-    victim->freq = 1;      // ⭐ new line starts with freq=1
+    victim->freq = 1;    
     victim->last_used = time;
 
     return false;

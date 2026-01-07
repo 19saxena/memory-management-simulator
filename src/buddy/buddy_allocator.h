@@ -24,8 +24,8 @@ public:
 
 private:
     size_t memory_size;
-    size_t total_memory;      // ⭐ FIXED: add this
-    uint64_t next_id = 1;     // block counter
+    size_t total_memory;      
+    uint64_t next_id = 1;    
     int alloc_success = 0;
     int alloc_fail = 0;
     std::map<size_t, std::list<BuddyBlock>> free_lists;

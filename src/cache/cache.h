@@ -5,14 +5,14 @@
 struct CacheLine {
     bool valid = false;
     uint64_t tag = 0;
-    int freq = 0;          // ⭐ LFU counter
-    uint64_t last_used = 0; // timestamp for tie-breaking if needed
+    int freq = 0;          
+    uint64_t last_used = 0; 
 };
 
 enum class CachePolicy {
     FIFO,
     LRU,
-    LFU  // ⭐ Add LFU option
+    LFU  
 };
 
 class Cache {
