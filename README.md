@@ -20,8 +20,6 @@ Makefile → build & run automation
 
 ## Build
 mingw32-make
-## Run CLI
-mingw32-make run
 ## Run workload tests
 memsim.exe < tests/workload_seq.txt
 
